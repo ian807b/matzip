@@ -2,3 +2,4 @@
 *.md
 /Matzip.fig
 *.zip
+.DS_Store
