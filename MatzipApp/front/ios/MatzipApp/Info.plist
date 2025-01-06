@@ -35,8 +35,26 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We require your permission to access your location to confirm it. By agreeing, your current location can be used to register places. You can change this setting anytime in your device's settings. Note that your location is not transmitted to our server.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We require your permission to access your location to confirm it. By agreeing, your current location can be used to register places. You can change this setting anytime in your device's settings. Note that your location is not transmitted to our server.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>We require your permission to access your location to confirm it. By agreeing, your current location can be used to register places. You can change this setting anytime in your device's settings. Note that your location is not transmitted to our server.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app uses motion data to provide enhanced features or improve user experience.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need access to your photo library to allow you to select photos when creating a post.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to allow you to select photos when creating a post.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We need access to your music library to allow you to select songs for your posts or enjoy personalized music experiences.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
