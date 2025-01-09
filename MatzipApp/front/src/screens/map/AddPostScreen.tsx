@@ -13,7 +13,6 @@ import Octicons from '@react-native-vector-icons/octicons';
 import useForm from '@/hooks/useForm';
 import {getDateWithSeparator, validateAddPost} from '@/utils';
 import AddPostHeaderRight from '@/components/post/AddPostHeaderRight';
-import useMutateCreatePost from '@/hooks/queries/useMutateCreate';
 import {MarkerColor} from '@/types/domain';
 import useGetAddress from '@/hooks/useGetAddress';
 import MarkerSelector from '@/components/post/MarkerSelector';
@@ -26,6 +25,7 @@ import useImagePicker from '@/hooks/useImagePicker';
 import CustomButton from '@/components/common/CustomButton';
 import InputField from '@/components/common/InputField';
 import PreviewImageList from '@/components/common/PreviewImageList';
+import useMutateCreatePost from '@/hooks/queries/useMutateCreatePost';
 
 type AddPostScreenProps = StackScreenProps<
   MapStackParamList,

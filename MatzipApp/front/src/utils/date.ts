@@ -20,10 +20,10 @@ function getDateWithSeparator(
   ].join(separator);
 }
 
-function getDateLocaleFormate(dateString: Date | string) {
+function getDateLocaleFormat(dateString: Date | string) {
   const {year, month, day} = getDateDetails(dateString);
 
   return `${year}년 ${month}월 ${day}일`;
 }
 
-export {getDateWithSeparator, getDateLocaleFormate};
+export {getDateWithSeparator, getDateLocaleFormat};
