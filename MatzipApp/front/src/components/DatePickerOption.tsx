@@ -18,8 +18,8 @@ function DatePickerOption({
   onConfirmDate,
 }: DatePickerOptionProps) {
   return (
-    <Modal visible={isVisible} transparent animationType="slide">
-      <SafeAreaView style={styles.optionBackgound}>
+    <Modal visible={isVisible} transparent={true} animationType={'slide'}>
+      <SafeAreaView style={[styles.optionBackground, styles.dimmed]}>
         <View style={styles.optionContainer}>
           <View style={styles.pickerContainer}>
             <DatePicker
@@ -44,15 +44,17 @@ const styles = StyleSheet.create({
   pickerContainer: {
     alignItems: 'center',
   },
-  optionBackgound: {
+  optionBackground: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0 / 0.5)',
+  },
+  dimmed: {
+    backgroundColor: 'rgba(0 0 0 / 0.5)',
   },
   optionContainer: {
     borderRadius: 15,
     marginHorizontal: 10,
-    marginBottom: 50,
+    marginBottom: 40,
     backgroundColor: colors.GRAY_100,
     overflow: 'hidden',
   },
@@ -64,8 +66,8 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   optionText: {
-    color: colors.BLUE_500,
     fontSize: 17,
+    color: colors.BLUE_500,
     fontWeight: '500',
   },
 });

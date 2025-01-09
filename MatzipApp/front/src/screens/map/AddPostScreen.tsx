@@ -13,7 +13,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import Opticons from '@react-native-vector-icons/octicons';
+import Octicons from '@react-native-vector-icons/octicons';
 import CustomButton from '@/components/CustomButton';
 import useForm from '@/hooks/useForm';
 import {getDateWithSeparator, validateAddPost} from '@/utils';
@@ -39,33 +39,35 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
   const {location} = route.params;
   const descriptionRef = useRef<TextInput | null>(null);
   const createPost = useMutateCreatePost();
-
+  const address = useGetAddress(location);
   const addPost = useForm({
-    initialValue: {title: '', description: ''},
+    initialValue: {
+      title: '',
+      description: '',
+    },
     validate: validateAddPost,
   });
-  const [markerColor, setmarkerColor] = useState<MarkerColor>('RED');
-  const [score, setScore] = useState(5);
+  const datePickerModal = useModal();
   const [date, setDate] = useState(new Date());
-  const address = useGetAddress(location);
   const [isPicked, setIsPicked] = useState(false);
-  const dateOption = useModal();
+  const [markerColor, setMarkerColor] = useState<MarkerColor>('RED');
+  const [score, setScore] = useState(5);
   const imagePicker = useImagePicker({
     initialImages: [],
   });
   usePermission('PHOTO');
 
-  const handleConfirmDate = () => {
-    setIsPicked(true);
-    dateOption.hide();
-  };
-
   const handleChangeDate = (pickedDate: Date) => {
     setDate(pickedDate);
   };
 
+  const handleConfirmDate = () => {
+    setIsPicked(true);
+    datePickerModal.hide();
+  };
+
   const handleSelectMarker = (name: MarkerColor) => {
-    setmarkerColor(name);
+    setMarkerColor(name);
   };
 
   const handleChangeScore = (value: number) => {
@@ -79,8 +81,9 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
       description: addPost.values.description,
       color: markerColor,
       score,
-      imageUris: [],
+      imageUris: imagePicker.imageUris,
     };
+
     createPost.mutate(
       {address, ...location, ...body},
       {
@@ -93,7 +96,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
     navigation.setOptions({
       headerRight: () => AddPostHeaderRight(handleSubmit),
     });
-  });
+  }, [handleSubmit, navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -101,34 +104,38 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
         <View style={styles.inputContainer}>
           <InputField
             value={address}
-            disabled
+            disabled={true}
             icon={
-              <Opticons name="location" size={16} color={colors.GRAY_500} />
+              <Octicons name="location" size={16} color={colors.GRAY_500} />
             }
           />
           <CustomButton
             variant="outlined"
             size="large"
-            label={isPicked ? getDateWithSeparator(date, '. ') : '날짜 선택'}
-            onPress={dateOption.show}
+            label={
+              isPicked ? `${getDateWithSeparator(date, '. ')}` : '날짜 선택'
+            }
+            onPress={datePickerModal.show}
           />
           <InputField
-            placeholder="제목을 입력하세요."
+            {...addPost.getTextInputProps('title')}
             error={addPost.errors.title}
             touched={addPost.touched.title}
+            placeholder="제목을 입력하세요."
             returnKeyType="next"
             blurOnSubmit={false}
-            onSubmitEditing={() => descriptionRef.current?.focus()}
-            {...addPost.getTextInputProps('title')}
+            onSubmitEditing={() => {
+              descriptionRef.current?.focus();
+            }}
           />
           <InputField
-            ref={descriptionRef}
-            placeholder="기록하고 싶은 내용을 입력하세요. (선택)"
+            {...addPost.getTextInputProps('description')}
             error={addPost.errors.description}
             touched={addPost.touched.description}
-            multiline
+            ref={descriptionRef}
+            placeholder="기록하고 싶은 내용을 입력하세요. (선택)"
             returnKeyType="next"
-            {...addPost.getTextInputProps('description')}
+            multiline
           />
           <MarkerSelector
             score={score}
@@ -146,7 +153,7 @@ function AddPostScreen({route, navigation}: AddPostScreenProps) {
           </View>
           <DatePickerOption
             date={date}
-            isVisible={dateOption.isVisible}
+            isVisible={datePickerModal.isVisible}
             onChangeDate={handleChangeDate}
             onConfirmDate={handleConfirmDate}
           />
