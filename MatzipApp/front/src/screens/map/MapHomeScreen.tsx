@@ -21,9 +21,9 @@ import useUserLocation from '@/hooks/useUserLocation';
 import usePermission from '@/hooks/usePermission';
 import useGetMarkers from '@/hooks/queries/useGetMarkers';
 import mapStyle from '@/style/mapStyle';
-import CustomMarker from '@/components/CustomMarker';
+import CustomMarker from '@/components/common/CustomMarker';
 import useModal from '@/hooks/useModal';
-import MarkerModal from '@/components/MarkerModal';
+import MarkerModal from '@/components/map/MarkerModal';
 import Config from 'react-native-config';
 
 console.log('Config.TEST', Config.GOOGLE_API_KEY);
