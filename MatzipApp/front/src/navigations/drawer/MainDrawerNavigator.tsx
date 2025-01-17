@@ -53,6 +53,8 @@ function MainDrawerNavigator() {
         drawerStyle: {
           width: Dimensions.get('screen').width * 0.6,
           backgroundColor: colors.WHITE,
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
         },
         drawerActiveTintColor: colors.BLACK,
         drawerInactiveTintColor: colors.GRAY_500,
@@ -60,6 +62,9 @@ function MainDrawerNavigator() {
         drawerInactiveBackgroundColor: colors.GRAY_100,
         drawerLabelStyle: {
           fontWeight: '600',
+        },
+        drawerItemStyle: {
+          borderRadius: 5,
         },
         drawerIcon: ({focused}) => DrawerIcons(route, focused),
       })}>
