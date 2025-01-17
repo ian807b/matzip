@@ -78,11 +78,12 @@ interface ButtonProps extends PressableProps {
   isDanger?: boolean;
 }
 
-function Button({children, isDanger = false, ...props}) {
+function Button({children, isDanger = false, ...props}: ButtonProps) {
   return (
     <Pressable
       style={({pressed}) => [
-        [pressed && styles.optionButtonPressed, styles.optionButton],
+        pressed && styles.optionButtonPressed,
+        styles.optionButton,
       ]}
       {...props}>
       <Text style={[styles.optionText, isDanger && styles.dangerText]}>
@@ -101,7 +102,7 @@ function Title({children}: PropsWithChildren) {
 }
 
 function Divider() {
-  return <View style={styles.border}></View>;
+  return <View style={styles.border} />;
 }
 
 export const CompoundOption = Object.assign(OptionMain, {
@@ -116,13 +117,14 @@ const styles = StyleSheet.create({
   optionBackground: {
     flex: 1,
     justifyContent: 'flex-end',
-    backgroundColor: 'rbga(0 0 0 / 0.5)',
+    backgroundColor: 'rgba(0 0 0 / 0.5)',
   },
   optionContainer: {
     borderRadius: 15,
     marginHorizontal: 10,
     marginBottom: 10,
     backgroundColor: colors.GRAY_100,
+    overflow: 'hidden',
   },
   optionButton: {
     flexDirection: 'row',
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   titleText: {
-    fonsSize: 16,
+    fontSize: 16,
     fontWeight: '500',
     color: colors.BLACK,
   },

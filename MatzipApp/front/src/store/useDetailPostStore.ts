@@ -6,11 +6,11 @@ interface DetailPostState {
   setDetailPost: (detailPost: ResponsePost) => void;
 }
 
-const useDetailStore = create<DetailPostState>(set => ({
+const useDetailPostStore = create<DetailPostState>(set => ({
   detailPost: null,
   setDetailPost: (detailPost: ResponsePost) => {
     set({detailPost});
   },
 }));
 
-export default useDetailStore;
+export default useDetailPostStore;

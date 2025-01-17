@@ -1,3 +1,21 @@
+import React, {useEffect} from 'react';
+import {
+  Dimensions,
+  Image,
+  Platform,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {StackScreenProps} from '@react-navigation/stack';
+import Octicons from '@react-native-vector-icons/octicons';
+import Ionicons from '@react-native-vector-icons/ionicons';
+
+import {FeedStackParamList} from '@/navigations/stack/FeedStackNavigator';
+import useGetPost from '@/hooks/queries/useGetPost';
 import {
   colorHex,
   colors,
@@ -5,23 +23,6 @@ import {
   mainNavigations,
   mapNavigations,
 } from '@/constants';
-import useGetPost from '@/hooks/queries/useGetPost';
-import {FeedStackParamList} from '@/navigations/stack/FeedStackNavigator';
-import {StackScreenProps} from '@react-navigation/stack';
-import React, {useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Image,
-  Platform,
-  Dimensions,
-  Text,
-  SafeAreaView,
-  Pressable,
-} from 'react-native';
-import Ionicons from '@react-native-vector-icons/ionicons';
-import Octicons from '@react-native-vector-icons/octicons';
 import {getDateLocaleFormat} from '@/utils';
 import PreviewImageList from '@/components/common/PreviewImageList';
 import CustomButton from '@/components/common/CustomButton';
@@ -32,7 +33,7 @@ import {MainDrawerParamList} from '@/navigations/drawer/MainDrawerNavigator';
 import useLocationStore from '@/store/useLocationStore';
 import useModal from '@/hooks/useModal';
 import FeedDetailOption from '@/components/feed/FeedDetailOption';
-import useDetailStore from '@/store/useDetailPostStore';
+import useDetailPostStore from '@/store/useDetailPostStore';
 import useMutateFavoritePost from '@/hooks/queries/useMutateFavoritePost';
 
 type FeedDetailScreenProps = CompositeScreenProps<
@@ -46,12 +47,12 @@ function FeedDetailScreen({route, navigation}: FeedDetailScreenProps) {
   const favoriteMutation = useMutateFavoritePost();
   const insets = useSafeAreaInsets();
   const {setMoveLocation} = useLocationStore();
-  const {setDetailPost} = useDetailStore();
+  const {setDetailPost} = useDetailPostStore();
   const detailOption = useModal();
 
   useEffect(() => {
     post && setDetailPost(post);
-  }, [post]);
+  }, [post, setDetailPost]);
 
   if (isPending || isError) {
     return <></>;

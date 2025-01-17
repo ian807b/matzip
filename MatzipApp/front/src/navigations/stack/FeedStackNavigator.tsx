@@ -1,13 +1,13 @@
-import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {LatLng} from 'react-native-maps';
 
 import {colors, feedNavigations} from '@/constants';
 import FeedHomeScreen from '@/screens/feed/FeedHomeScreen';
-import FeedHomeHeaderLeft from '@/components/feed/FeedHomeHeaderLeft';
 import FeedDetailScreen from '@/screens/feed/FeedDetailScreen';
-import {LatLng} from 'react-native-maps';
 import EditPostScreen from '@/screens/feed/EditPostScreen';
 import ImageZoomScreen from '@/screens/feed/ImageZoomScreen';
+import FeedHomeHeaderLeft from '@/components/feed/FeedHomeHeaderLeft';
 
 export type FeedStackParamList = {
   [feedNavigations.FEED_HOME]: undefined;

@@ -1,4 +1,4 @@
-import {ResponsePost, getPosts} from '@/api';
+import {ResponsePost, getSearchPosts} from '@/api';
 import {queryKeys} from '@/constants';
 import {ResponseError} from '@/types';
 import {
@@ -8,7 +8,8 @@ import {
   useInfiniteQuery,
 } from '@tanstack/react-query';
 
-function useGetInfinitePosts(
+function useGetInfiniteSearchPosts(
+  query: string,
   queryOptions?: UseInfiniteQueryOptions<
     ResponsePost[],
     ResponseError,
@@ -19,8 +20,8 @@ function useGetInfinitePosts(
   >,
 ) {
   return useInfiniteQuery({
-    queryFn: ({pageParam}) => getPosts(pageParam),
-    queryKey: [queryKeys.POST, queryKeys.GET_POSTS],
+    queryFn: ({pageParam}) => getSearchPosts(pageParam, query),
+    queryKey: [queryKeys.POST, queryKeys.GET_SEARCH_POSTS, query],
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const lastPost = lastPage[lastPage.length - 1];
@@ -30,4 +31,4 @@ function useGetInfinitePosts(
   });
 }
 
-export default useGetInfinitePosts;
+export default useGetInfiniteSearchPosts;

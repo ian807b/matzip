@@ -1,6 +1,5 @@
 import {ImageUri, Post} from '@/types';
 import axiosInstance from './axios';
-import axios from 'axios';
 
 type ResponsePost = Post & {images: ImageUri[]};
 
@@ -35,7 +34,7 @@ const deletePost = async (id: number) => {
 type RequestUpdatePost = {
   id: number;
   body: Omit<Post, 'id' | 'longitude' | 'latitude' | 'address'> & {
-    ImageUris: ImageUri[];
+    imageUris: ImageUri[];
   };
 };
 
@@ -60,6 +59,17 @@ const updateFavoritePost = async (id: number): Promise<number> => {
   return data;
 };
 
+const getSearchPosts = async (
+  page = 1,
+  query: string,
+): Promise<ResponsePost[]> => {
+  const {data} = await axiosInstance.get(
+    `/posts/my/search?query=${query}&page=${page}`,
+  );
+
+  return data;
+};
+
 export {
   createPost,
   getPost,
@@ -68,6 +78,7 @@ export {
   updatePost,
   updateFavoritePost,
   getFavoritePosts,
+  getSearchPosts,
 };
 export type {
   ResponsePost,

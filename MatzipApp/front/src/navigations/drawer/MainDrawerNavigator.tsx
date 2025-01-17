@@ -6,13 +6,11 @@ import CustomDrawerContent from './CustomDrawerContent';
 import CalendarHomeScreen from '@/screens/calendar/CalendarHomeScreen';
 import MapStackNavigator, {MapStackParamList} from '../stack/MapStackNavigator';
 import {colors, mainNavigations} from '@/constants';
-import FeedStackNavigator, {
-  FeedStackParamList,
-} from '../stack/FeedStackNavigator';
+import FeedTabNavigator, {FeedTabParamList} from '../tab/FeedTabNavigator';
 
 export type MainDrawerParamList = {
   [mainNavigations.HOME]: NavigatorScreenParams<MapStackParamList>;
-  [mainNavigations.FEED]: NavigatorScreenParams<FeedStackParamList>;
+  [mainNavigations.FEED]: NavigatorScreenParams<FeedTabParamList>;
   [mainNavigations.CALENDAR]: undefined;
 };
 
@@ -55,8 +53,6 @@ function MainDrawerNavigator() {
         drawerStyle: {
           width: Dimensions.get('screen').width * 0.6,
           backgroundColor: colors.WHITE,
-          borderTopRightRadius: 0,
-          borderBottomRightRadius: 0,
         },
         drawerActiveTintColor: colors.BLACK,
         drawerInactiveTintColor: colors.GRAY_500,
@@ -64,9 +60,6 @@ function MainDrawerNavigator() {
         drawerInactiveBackgroundColor: colors.GRAY_100,
         drawerLabelStyle: {
           fontWeight: '600',
-        },
-        drawerItemStyle: {
-          borderRadius: 5,
         },
         drawerIcon: ({focused}) => DrawerIcons(route, focused),
       })}>
@@ -80,7 +73,7 @@ function MainDrawerNavigator() {
       />
       <Drawer.Screen
         name={mainNavigations.FEED}
-        component={FeedStackNavigator}
+        component={FeedTabNavigator}
         options={{
           title: '피드',
         }}

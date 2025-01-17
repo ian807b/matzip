@@ -1,11 +1,13 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import FeedList from '@/components/feed/FeedList';
 
-function FeedHomeScreen() {
+import {colors} from '@/constants';
+import FeedSearchList from '@/components/feed/FeedSearchList';
+
+function FeedSearchScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <FeedList />
+      <FeedSearchList />
     </SafeAreaView>
   );
 }
@@ -13,7 +15,8 @@ function FeedHomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.WHITE,
   },
 });
 
-export default FeedHomeScreen;
+export default FeedSearchScreen;

@@ -46,23 +46,22 @@ function PreviewImageList({
             <View key={uri} style={styles.imageContainer}>
               <Pressable onPress={() => handlePressImage(index)}>
                 <Image
-                  key={index}
-                  resizeMode="cover"
+                  style={styles.image}
                   source={{
                     uri: `${
                       Platform.OS === 'ios'
-                        ? 'http://localhost:3030'
-                        : 'http://10.0.0.2:3030'
-                    }/${uri}`,
+                        ? 'http://localhost:3030/'
+                        : 'http://10.0.2.2:3030/'
+                    }${uri}`,
                   }}
-                  style={styles.image}
+                  resizeMode="cover"
                 />
                 {showOption && (
                   <>
                     <Pressable
                       style={[styles.imageButton, styles.deleteButton]}
                       onPress={() => onDelete && onDelete(uri)}>
-                      <Ionicons name="close" size={16} color={colors.WHITE} />
+                      <Ionicons name={'close'} size={16} color={colors.WHITE} />
                     </Pressable>
 
                     {index > 0 && (
@@ -72,7 +71,7 @@ function PreviewImageList({
                           onChangeOrder && onChangeOrder(index, index - 1)
                         }>
                         <Ionicons
-                          name="arrow-back-outline"
+                          name={'arrow-back-outline'}
                           size={16}
                           color={colors.WHITE}
                         />
@@ -85,7 +84,7 @@ function PreviewImageList({
                           onChangeOrder && onChangeOrder(index, index + 1)
                         }>
                         <Ionicons
-                          name="arrow-forward-outline"
+                          name={'arrow-forward-outline'}
                           size={16}
                           color={colors.WHITE}
                         />
